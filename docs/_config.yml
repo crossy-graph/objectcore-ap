@@ -1,0 +1,5 @@
+title: ObjectCore-AP
+url: https://crossy-graph.github.io
+baseurl: /objectcore-ap
+markdown: kramdown
+exclude: [visuals/img/README]

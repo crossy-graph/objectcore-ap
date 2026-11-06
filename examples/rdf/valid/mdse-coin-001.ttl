@@ -1,0 +1,60 @@
+# Minimum dataset for collections (MDSE), one coin record. Values follow the paper's table 3b in spirit; identifiers are invented.
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
+@prefix oc: <https://w3id.org/nfdi4objects/objectcore-ap/> .
+@prefix schema: <http://schema.org/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix adms: <http://www.w3.org/ns/adms#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ex: <https://example.org/> .
+
+# Metadatensatz-Ebene (MDSE: ID, Sprache, erstellende Einrichtung, Link, Datierung, Datensatzart)
+ex:record-coin-001 a dcat:Dataset, oc:ObjectCoreDataset ;
+  dcterms:type ex:type-single-object ;
+  dcterms:title "Faustina (Minor), Aureus"@de ;
+  dcterms:description "Aureus der Faustina Minor, Praegung in Rom."@de ;
+  dcterms:identifier "record_coin_001" ;
+  dcterms:language ex:lang-de ;
+  dcterms:creator [ a foaf:Agent, foaf:Organization ; foaf:name "Example Coin Cabinet" ] ;
+  dcterms:issued "2012-12-16"^^xsd:date ;
+  dcterms:modified "2012-12-16"^^xsd:date ;
+  dcat:landingPage ex:page-18273315 ;
+  dcat:distribution ex:dist-image-1 ;
+  dcterms:subject ex:object-coin-001 .
+
+ex:dist-image-1 a dcat:Distribution, oc:ObjectCoreDistribution ;
+  dcterms:title "Obverse image" ;
+  dcat:accessURL <https://example.org/media/coin-001-obverse.jpg> ;
+  dcat:mediaType ex:mt-jpeg ;
+  dcterms:license <http://creativecommons.org/publicdomain/zero/1.0/> .
+<http://creativecommons.org/publicdomain/zero/1.0/> a dcterms:LicenseDocument .
+
+# Objekt-Ebene (MDSE: Titel, Typ, Klassifikation, Inventarnummer, Material, Technik, Masse, verwahrende Einrichtung)
+ex:object-coin-001 a prov:Entity, crm:E18_Physical_Thing ;
+  dcterms:title "Faustina (Minor)" ;
+  dcterms:type ex:vocab-coin ;
+  adms:identifier [ a adms:Identifier ; skos:notation "18273315" ] ;
+  oc:material ex:vocab-gold ;
+  dcterms:relation [ a <http://qudt.org/schema/qudt/Quantity> ; dcterms:title "Weight" ; <http://www.w3.org/ns/prov#value> "6.98"^^xsd:float ; <http://qudt.org/schema/qudt/unit> <http://qudt.org/vocab/unit/GM> ] ;
+  oc:currentKeeper [ a foaf:Agent, foaf:Organization ; foaf:name "Example Coin Cabinet" ; adms:identifier [ a adms:Identifier ; skos:notation "DE-MUS-814819" ] ] ;
+  oc:biography ex:event-production-001 .
+
+# Ereignis-Ebene (MDSE: Ereignistyp, Person/Koerperschaft, Datierung, Ort)
+ex:event-production-001 a prov:Activity, crm:E12_Production ;
+  dcterms:description "Praegung, Rom."@de ;
+  dcterms:temporal [ a dcterms:PeriodOfTime ; dcat:startDate "0147-01-01"^^xsd:date ; dcat:endDate "0161-12-31"^^xsd:date ] ;
+  prov:atLocation [ a dcterms:Location, oc:ObjectLocation ; skos:prefLabel "Rom" ] ;
+  oc:uncertainty [ a oc:Uncertainty ; oc:aspect "time_span" ; oc:level "probable" ; skos:note "Datierung nach Regierungszeit." ] .
+
+ex:type-single-object a skos:Concept ; skos:prefLabel "Einzelobjekt"@de .
+ex:vocab-coin a schema:DefinedTerm ; schema:name "Muenze" .
+ex:vocab-gold a schema:DefinedTerm ; schema:name "Gold" .
+
+ex:lang-de a dcterms:LinguisticSystem .
+ex:page-18273315 a foaf:Document .
+ex:mt-jpeg a dcterms:MediaType .
+
+<http://qudt.org/vocab/unit/GM> a schema:DefinedTerm ; schema:name "GM" .

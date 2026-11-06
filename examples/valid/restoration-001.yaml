@@ -1,0 +1,51 @@
+id: https://example.org/dataset/restoration-001
+title:
+- Restoration documentation of a bronze fibula
+description:
+- Documentation of the condition assessment and the conservation treatment of a Roman bronze fibula.
+type:
+- preferred_label:
+  - Dataset
+identifier:
+- restoration-001
+creator:
+- name:
+  - Example Restorer
+release_date: "2026-03-15"
+dataset_distribution:
+- title:
+  - Documentation as PDF
+  access_URL:
+  - id: https://example.org/files/restoration-001.pdf
+  licence:
+    id: http://creativecommons.org/licenses/by/4.0/
+is_about_entity:
+- id: https://example.org/object/fibula-17
+  title: Bronze fibula 17
+  material:
+  - id: https://example.org/vocab/bronze
+    title: bronze
+  current_keeper:
+    name:
+    - Example Museum
+  biography:
+  - id: https://example.org/event/assessment-001
+    description:
+    - Condition assessment before treatment.
+    time_span:
+      start_date: "2026-03-01"
+      end_date: "2026-03-01"
+    participation:
+    - agent:
+        name:
+        - Example Restorer
+      role:
+        id: https://example.org/vocab/restorer
+        title: restorer
+    assessed_condition:
+    - id: https://example.org/vocab/corroded
+      title: active corrosion
+    uncertainty:
+    - aspect: time_span
+      level: probable
+      note: Date taken from the treatment report header.

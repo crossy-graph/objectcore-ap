@@ -1,0 +1,44 @@
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
+@prefix oc: <https://w3id.org/nfdi4objects/objectcore-ap/> .
+@prefix schema: <http://schema.org/> .
+@prefix time: <http://www.w3.org/2006/time#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ex: <https://example.org/> .
+
+ex:dataset-restoration-001 a dcat:Dataset, oc:ObjectCoreDataset ;
+  dcterms:title "Restoration documentation of a bronze fibula" ;
+  dcterms:description "Condition assessment and conservation treatment of a Roman bronze fibula." ;
+  dcterms:identifier "restoration-001" ;
+  dcterms:creator [ a foaf:Agent ; foaf:name "Example Restorer" ] ;
+  dcterms:issued "2026-03-15"^^xsd:date ;
+  dcat:distribution ex:dist-1 ;
+  dcterms:subject ex:object-fibula-17 .
+
+ex:dist-1 a dcat:Distribution, oc:ObjectCoreDistribution ;
+  dcterms:title "Documentation as PDF" ;
+  dcat:accessURL <https://example.org/files/restoration-001.pdf> .
+<http://creativecommons.org/licenses/by/4.0/> a dcterms:LicenseDocument .
+
+ex:object-fibula-17 a prov:Entity, crm:E18_Physical_Thing ;
+  schema:name "Bronze fibula 17" ;
+  dcterms:title "Bronze fibula 17" ;
+  oc:material ex:vocab-bronze ;
+  oc:biography ex:event-assessment-001 .
+
+ex:event-assessment-001 a prov:Activity, crm:E14_Condition_Assessment ;
+  dcterms:description "Condition assessment before treatment." ;
+  prov:used ex:object-fibula-17 ;
+  dcterms:temporal [ a dcterms:PeriodOfTime ; dcat:startDate "2026-03-01"^^xsd:date ; dcat:endDate "2026-03-01"^^xsd:date ] ;
+  prov:qualifiedAssociation [ a prov:Association ;
+      prov:agent [ a foaf:Agent ; foaf:name "Example Restorer" ] ;
+      dcat:hadRole ex:vocab-restorer ] ;
+  oc:assessedCondition ex:vocab-corroded ;
+  oc:uncertainty [ a oc:Uncertainty ; oc:aspect "time_span" ; oc:level "probable" ] .
+
+ex:vocab-bronze a schema:DefinedTerm ; schema:name "bronze" .
+ex:vocab-corroded a schema:DefinedTerm ; schema:name "active corrosion" .
+ex:vocab-restorer a schema:DefinedTerm ; schema:name "restorer" .

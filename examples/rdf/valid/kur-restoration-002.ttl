@@ -1,0 +1,109 @@
+# KuR-MDS (TA4 Restaurierung): one object with condition assessment, examination, sampling and treatment. All values invented.
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
+@prefix crmsci: <http://www.cidoc-crm.org/extensions/crmsci/> .
+@prefix oc: <https://w3id.org/nfdi4objects/objectcore-ap/> .
+@prefix schema: <http://schema.org/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix adms: <http://www.w3.org/ns/adms#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ex: <https://example.org/> .
+
+ex:record-kur-002 a dcat:Dataset, oc:ObjectCoreDataset ;
+  dcterms:type ex:type-kur ;
+  dcterms:title "Restoration record: iron sword"@en ;
+  dcterms:description "Condition assessment, examination, sampling and treatment of an iron sword."@en ;
+  dcterms:identifier "kur-002" ;
+  dcterms:language ex:lang-en ;
+  dcterms:creator [ a foaf:Agent, foaf:Organization ; foaf:name "Example Conservation Workshop" ] ;
+  dcterms:issued "2026-06-01"^^xsd:date ;
+  dcterms:modified "2026-06-20"^^xsd:date ;
+  dcat:version "1.1" ;
+  dcterms:accessRights ex:rights-restricted ;
+  dcat:distribution ex:dist-kur-002 ;
+  dcterms:subject ex:object-sword-5 ;
+  prov:wasGeneratedBy ex:event-treatment-002 .
+
+ex:dist-kur-002 a dcat:Distribution, oc:ObjectCoreDistribution ;
+  dcterms:title "Restoration report" ;
+  dcat:accessURL <https://example.org/files/kur-002.pdf> ;
+  dcterms:license <http://creativecommons.org/licenses/by/4.0/> .
+<http://creativecommons.org/licenses/by/4.0/> a dcterms:LicenseDocument .
+ex:rights-restricted a dcterms:RightsStatement .
+ex:lang-en a dcterms:LinguisticSystem .
+
+ex:object-sword-5 a prov:Entity, crm:E18_Physical_Thing ;
+  dcterms:title "Iron sword" ;
+  dcterms:type ex:vocab-sword ;
+  adms:identifier [ a adms:Identifier ; skos:notation "INV-2026-5" ] ;
+  oc:material ex:vocab-iron ;
+  oc:currentKeeper [ a foaf:Agent, foaf:Organization ; foaf:name "Example Museum" ] ;
+  oc:biography ex:event-acquisition-002, ex:event-assessment-002, ex:event-exam-002, ex:event-sampling-002, ex:event-treatment-002, ex:event-hazard-002, ex:event-monitoring-002 ;
+  oc:recommendation "Handle with gloves; store at 40 % relative humidity or lower."@en .
+
+ex:event-acquisition-002 a prov:Activity, crm:E8_Acquisition ;
+  dcterms:description "Entry into the collection (Eingangsdatum, Herkunft)."@en ;
+  dcterms:temporal [ a dcterms:PeriodOfTime ; dcat:startDate "2026-02-10"^^xsd:date ] ;
+  oc:transferredFrom [ a foaf:Agent ; foaf:name "Excavation of the Example Heritage Office" ] .
+
+ex:event-assessment-002 a prov:Activity, crm:E14_Condition_Assessment ;
+  dcterms:description "Condition assessment before treatment: active corrosion, 70 % complete."@en ;
+  dcterms:temporal [ a dcterms:PeriodOfTime ; dcat:startDate "2026-03-01"^^xsd:date ; dcat:endDate "2026-03-01"^^xsd:date ] ;
+  prov:qualifiedAssociation [ a prov:Association ; prov:agent [ a foaf:Agent ; foaf:name "Example Restorer" ] ; dcat:hadRole ex:vocab-restorer ] ;
+  oc:assessedCondition ex:vocab-active-corrosion, ex:vocab-fragmentary ;
+  oc:damageDegree ex:vocab-severe ;
+  oc:completeness ex:vocab-incomplete ;
+  oc:stability ex:vocab-unstable .
+
+ex:event-exam-002 a prov:Activity, crmsci:S21_Measurement ;
+  dcterms:description "X-radiography of the blade."@en ;
+  dcterms:temporal [ a dcterms:PeriodOfTime ; dcat:startDate "2026-03-10"^^xsd:date ] ;
+  prov:used ex:object-sword-5 ;
+  prov:qualifiedAssociation [ a prov:Association ; prov:agent [ a foaf:Agent ; foaf:name "Example Radiography Unit" ] ; dcat:hadRole ex:vocab-examiner ] .
+
+ex:event-sampling-002 a prov:Activity, crmsci:S2_Sample_Taking ;
+  dcterms:description "Corrosion sample taken near the hilt."@en ;
+  dcterms:temporal [ a dcterms:PeriodOfTime ; dcat:startDate "2026-03-12"^^xsd:date ] ;
+  prov:used ex:object-sword-5 ;
+  prov:qualifiedAssociation [ a prov:Association ; prov:agent [ a foaf:Agent ; foaf:name "Example Restorer" ] ; dcat:hadRole ex:vocab-restorer ] .
+
+ex:event-treatment-002 a prov:Activity, crm:E11_Modification ;
+  dcterms:description "Mechanical cleaning and consolidation."@en ;
+  dcterms:temporal [ a dcterms:PeriodOfTime ; dcat:startDate "2026-04-01"^^xsd:date ; dcat:endDate "2026-05-15"^^xsd:date ] ;
+  prov:used ex:object-sword-5 ;
+  prov:qualifiedAssociation [ a prov:Association ; prov:agent [ a foaf:Agent ; foaf:name "Example Restorer" ] ; dcat:hadRole ex:vocab-restorer ] ;
+  oc:treatment ex:vocab-cleaning, ex:vocab-consolidation .
+
+ex:event-hazard-002 a prov:Activity, oc:HazardAssessmentEvent ;
+  dcterms:description "Hazard assessment for the planned exhibition."@en ;
+  dcterms:temporal [ a dcterms:PeriodOfTime ; dcat:startDate "2026-05-20"^^xsd:date ] ;
+  oc:hazardType ex:vocab-humidity ;
+  oc:protectiveMeasure ex:vocab-display-case ;
+  oc:finding "Exhibition possible in a climate-controlled case." .
+
+ex:event-monitoring-002 a prov:Activity, oc:MonitoringEvent ;
+  dcterms:description "Humidity monitoring in the display case."@en ;
+  dcterms:temporal [ a dcterms:PeriodOfTime ; dcat:startDate "2026-06-10"^^xsd:date ] ;
+  oc:monitoredCondition ex:vocab-humidity ;
+  dcterms:relation [ a <http://qudt.org/schema/qudt/Quantity> ; dcterms:title "Relative humidity" ; <http://www.w3.org/ns/prov#value> "38.5"^^xsd:float ; <http://qudt.org/schema/qudt/unit> <http://qudt.org/vocab/unit/PERCENT> ] ;
+  oc:finding "Relative humidity stayed below 40 %." .
+
+ex:vocab-severe a schema:DefinedTerm ; schema:name "severe" .
+ex:vocab-incomplete a schema:DefinedTerm ; schema:name "incomplete" .
+ex:vocab-unstable a schema:DefinedTerm ; schema:name "unstable" .
+ex:vocab-humidity a schema:DefinedTerm ; schema:name "humidity" .
+ex:vocab-display-case a schema:DefinedTerm ; schema:name "climate-controlled display case" .
+ex:type-kur a skos:Concept ; skos:prefLabel "Restoration record"@en .
+ex:vocab-sword a schema:DefinedTerm ; schema:name "sword" .
+ex:vocab-iron a schema:DefinedTerm ; schema:name "iron" .
+ex:vocab-restorer a schema:DefinedTerm ; schema:name "restorer" .
+ex:vocab-examiner a schema:DefinedTerm ; schema:name "examiner" .
+ex:vocab-active-corrosion a schema:DefinedTerm ; schema:name "active corrosion" .
+ex:vocab-fragmentary a schema:DefinedTerm ; schema:name "fragmentary" .
+ex:vocab-cleaning a schema:DefinedTerm ; schema:name "mechanical cleaning" .
+ex:vocab-consolidation a schema:DefinedTerm ; schema:name "consolidation" .
+
+<http://qudt.org/vocab/unit/PERCENT> a schema:DefinedTerm ; schema:name "PERCENT" .

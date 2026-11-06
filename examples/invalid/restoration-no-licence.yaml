@@ -1,0 +1,21 @@
+id: https://example.org/dataset/restoration-002
+title:
+- Restoration documentation without licence
+description:
+- The distribution has no licence, so the dataset violates the NFDI Core Metadata Profile (MUST).
+type:
+- preferred_label:
+  - Dataset
+identifier:
+- restoration-002
+creator:
+- name:
+  - Example Restorer
+dataset_distribution:
+- title:
+  - Documentation as PDF
+  access_URL:
+  - id: https://example.org/files/restoration-002.pdf
+is_about_entity:
+- id: https://example.org/object/fibula-18
+  title: Bronze fibula 18

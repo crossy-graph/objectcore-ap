@@ -1,0 +1,68 @@
+# Denkmaldatensatz (TA1 Denkmaelaemter, Core-Metadatenfelder K01-K43): a barrow. All values invented.
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
+@prefix oc: <https://w3id.org/nfdi4objects/objectcore-ap/> .
+@prefix locn: <http://www.w3.org/ns/locn#> .
+@prefix schema: <http://schema.org/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix adms: <http://www.w3.org/ns/adms#> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix geodcatap: <http://data.europa.eu/930/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ex: <https://example.org/> .
+
+# K01 PID, K05 Beschreibung, K07 Typ, K36 datenhaltende Institution, K37 System, K38 letzte Aenderung, K41 Lizenz, K42 Urheber
+ex:record-denkmal-001 a dcat:Dataset, oc:ObjectCoreDataset ;
+  dcterms:type ex:type-heritage-record ;
+  dcterms:title "Barrow near Example Village"@en ;
+  dcterms:description "Bronze Age barrow, visible above ground."@en ;
+  dcterms:identifier "https://example.org/pid/denkmal-001" ;
+  dcterms:language ex:lang-en ;
+  dcterms:creator [ a foaf:Agent, foaf:Organization ; foaf:name "Example State Heritage Office" ] ;
+  dcterms:publisher [ a foaf:Agent, foaf:Organization ; foaf:name "Example State Heritage Office" ] ;
+  oc:sourceSystem "Example HER 4.2" ;
+  dcterms:modified "2026-09-30"^^xsd:date ;
+  dcterms:issued "2026-10-01"^^xsd:date ;
+  dcat:distribution ex:dist-denkmal-001 ;
+  dcterms:subject ex:object-barrow-1 .
+
+ex:dist-denkmal-001 a dcat:Distribution, oc:ObjectCoreDistribution ;
+  dcterms:title "Record export as GeoJSON" ;
+  dcat:accessURL <https://example.org/export/denkmal-001.geojson> ;
+  dcterms:license <http://creativecommons.org/licenses/by/4.0/> .
+<http://creativecommons.org/licenses/by/4.0/> a dcterms:LicenseDocument .
+ex:lang-en a dcterms:LinguisticSystem .
+
+# K02 interne ID, K04 Bezeichnung, K08-K14 Datierung, K19-K24 Geometrie, CRS und Lagegenauigkeit, K26 Translozierung, K33 befundfrei
+ex:object-barrow-1 a prov:Entity, crm:E18_Physical_Thing ;
+  dcterms:title "Barrow 1" ;
+  dcterms:type ex:vocab-barrow ;
+  adms:identifier [ a adms:Identifier ; skos:notation "LDA-4711" ] ;
+  oc:currentLocation [ a dcterms:Location, oc:ObjectLocation ;
+      locn:geometry [ a locn:Geometry, oc:ObjectGeometry ;
+        geo:asWKT "POINT(8.2473 49.9929)"^^geo:wktLiteral ;
+        geodcatap:referenceSystem ex:crs-epsg-4326 ;
+        oc:positionalAccuracy "municipality level" ] ] ;
+  oc:uncertainty [ a oc:Uncertainty ; oc:aspect "place" ; oc:level "probable" ; skos:note "Municipality-level accuracy of the geometry." ] ;
+  oc:noFurtherFindingsExpected false ;
+  oc:dating [ a oc:Dating ;
+      dcterms:temporal [ a dcterms:PeriodOfTime ; dcat:startDate "-1500"^^xsd:gYear ; dcat:endDate "-1200"^^xsd:gYear ] ;
+      oc:epoch ex:vocab-bronze-age ;
+      oc:derivedFromEpoch true ;
+      skos:note "Dated by typology, not by absolute methods." ;
+      oc:uncertainty [ a oc:Uncertainty ; oc:aspect "time_span" ; oc:level "probable" ] ] ;
+  oc:biography ex:event-translocation-001 .
+
+ex:event-translocation-001 a prov:Activity, crm:E9_Move ;
+  dcterms:type ex:vocab-translocation ;
+  dcterms:description "The barrow was moved to the museum park in 1978."@en ;
+  dcterms:temporal [ a dcterms:PeriodOfTime ; dcat:startDate "1978"^^xsd:gYear ] .
+
+ex:type-heritage-record a skos:Concept ; skos:prefLabel "Heritage object record"@en .
+ex:crs-epsg-4326 a skos:Concept ; skos:prefLabel "EPSG:4326" .
+ex:vocab-barrow a schema:DefinedTerm ; schema:name "barrow" .
+ex:vocab-bronze-age a schema:DefinedTerm ; schema:name "Bronze Age" .
+ex:vocab-translocation a schema:DefinedTerm ; schema:name "translocation" .

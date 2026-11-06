@@ -1,0 +1,29 @@
+id: https://example.org/dataset/find-001
+title:
+- Find documentation
+description:
+- A participant is named without a role.
+type:
+- preferred_label:
+  - Dataset
+identifier:
+- find-001
+creator:
+- name:
+  - Example Archaeologist
+dataset_distribution:
+- title:
+  - Find sheet
+  access_URL:
+  - id: https://example.org/files/find-001.pdf
+  licence:
+    id: http://creativecommons.org/licenses/by/4.0/
+is_about_entity:
+- id: https://example.org/object/find-19
+  title: Find 19
+  biography:
+  - id: https://example.org/event/find-001
+    participation:
+    - agent:
+        name:
+        - Example Archaeologist

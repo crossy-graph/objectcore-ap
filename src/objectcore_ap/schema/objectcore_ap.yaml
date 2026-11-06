@@ -1,0 +1,596 @@
+id: https://w3id.org/nfdi4objects/objectcore-ap
+name: objectcore-ap
+title: ObjectCore-AP
+version: 0.1.0
+description: >-
+  ObjectCore-AP is an extension of DCAT-AP 3.0.1 (via DCAT-AP+) for the Object Core Metadata Profile (OCMDP)
+  of NFDI4Objects. It adds what DCAT-AP lacks for objects, samples and events in an object biography:
+  typed events (production, find, sampling, measurement, condition assessment, conservation, acquisition,
+  transfer of custody, move, provenance research, digitisation, publication or exhibition) with time span,
+  place, participants in roles, uncertainty and evidence, and a physical object with material, keeper and
+  location. Every instance remains a valid DCAT-AP 3.0.1 dcat:Dataset, so it can be exported unchanged to
+  DCAT-AP consumers. The namespace is provisional until a w3id.org registration exists.
+license: CC-BY-4.0
+see_also:
+- https://github.com/nfdi-de/dcat-ap-plus
+- https://semiceu.github.io/DCAT-AP/
+prefixes:
+  linkml: https://w3id.org/linkml/
+  oc: https://w3id.org/nfdi4objects/objectcore-ap/
+  dcat: http://www.w3.org/ns/dcat#
+  dcterms: http://purl.org/dc/terms/
+  prov: http://www.w3.org/ns/prov#
+  foaf: http://xmlns.com/foaf/0.1/
+  skos: http://www.w3.org/2004/02/skos/core#
+  schema: http://schema.org/
+  crm: http://www.cidoc-crm.org/cidoc-crm/
+  crmsci: http://www.cidoc-crm.org/extensions/crmsci/
+  crmdig: http://www.cidoc-crm.org/extensions/crmdig/
+  crminf: http://www.cidoc-crm.org/extensions/crminf/
+  xsd: http://www.w3.org/2001/XMLSchema#
+  geo: http://www.opengis.net/ont/geosparql#
+  locn: http://www.w3.org/ns/locn#
+  geodcatap: http://data.europa.eu/930/
+default_prefix: oc
+default_range: string
+imports:
+- linkml:types
+- vendor/dcat_ap_plus
+
+types:
+  wktLiteral:
+    description: A geometry as well-known text (GeoSPARQL).
+    typeof: string
+    uri: geo:wktLiteral
+
+enums:
+  UncertaintyAspectEnum:
+    description: The aspect of a statement that is uncertain or vague.
+    permissible_values:
+      time_span:
+        description: Dating or duration of the event.
+      place:
+        description: Location of the event or object.
+      participant:
+        description: Attribution to an agent or role.
+      identification:
+        description: Identification of the object or material.
+      event_type:
+        description: Interpretation of what kind of event took place.
+  UncertaintyLevelEnum:
+    description: Qualitative degree of certainty.
+    permissible_values:
+      certain: {}
+      probable: {}
+      possible: {}
+      doubtful: {}
+      unknown: {}
+
+slots:
+  time_span:
+    description: The period during which an event took place (CRM P4 has time-span).
+    slot_uri: dcterms:temporal
+    range: PeriodOfTime
+    recommended: true
+    inlined: true
+    exact_mappings:
+    - crm:P4_has_time-span
+  took_place_at:
+    description: The place where an event happened (CRM P7 took place at). Not the spatial coverage of a dataset.
+    slot_uri: prov:atLocation
+    range: ObjectLocation
+    recommended: true
+    multivalued: true
+    inlined_as_list: true
+    exact_mappings:
+    - crm:P7_took_place_at
+  participation:
+    description: An agent taking part in an event, with the role in which it acted.
+    slot_uri: prov:qualifiedAssociation
+    range: AgentInRole
+    multivalued: true
+    inlined_as_list: true
+    close_mappings:
+    - crm:P14_carried_out_by
+  agent:
+    description: The agent in a participation.
+    slot_uri: prov:agent
+    range: Agent
+    required: true
+    inlined: true
+  role:
+    description: The role in which the agent acted, taken from a controlled vocabulary.
+    slot_uri: dcat:hadRole
+    range: DefinedTerm
+    required: true
+    inlined: true
+  uncertainty:
+    description: A statement about how certain or vague an aspect of the event or object description is.
+    slot_uri: oc:uncertainty
+    range: Uncertainty
+    multivalued: true
+    inlined_as_list: true
+    close_mappings:
+    - crm:P79_beginning_is_qualified_by
+  aspect:
+    description: Which aspect of the description is uncertain.
+    range: UncertaintyAspectEnum
+    required: true
+  level:
+    description: Degree of certainty.
+    range: UncertaintyLevelEnum
+    required: true
+  note:
+    description: Free-text explanation of the uncertainty.
+    slot_uri: skos:note
+  evidence:
+    description: The source or document on which an event statement is based.
+    slot_uri: dcterms:source
+    range: Entity
+    multivalued: true
+    inlined_as_list: true
+  material:
+    description: Material of a physical object or sample, taken from a controlled vocabulary.
+    slot_uri: oc:material
+    range: DefinedTerm
+    multivalued: true
+    inlined_as_list: true
+    exact_mappings:
+    - crm:P45_consists_of
+  current_location:
+    description: Where the object is now.
+    slot_uri: oc:currentLocation
+    range: ObjectLocation
+    inlined: true
+    exact_mappings:
+    - crm:P55_has_current_location
+  current_keeper:
+    description: The agent that currently has custody of the object.
+    slot_uri: oc:currentKeeper
+    range: Agent
+    inlined: true
+    exact_mappings:
+    - crm:P50_has_current_keeper
+  sampled_from:
+    description: The object from which a sample was taken.
+    slot_uri: oc:sampledFrom
+    range: PhysicalObject
+    inlined: false
+    exact_mappings:
+    - crmsci:O5_removed
+  represents:
+    description: The physical object that a digital representation stands for.
+    slot_uri: dcterms:subject
+    range: PhysicalObject
+    inlined: false
+    close_mappings:
+    - crm:P138_represents
+  assessed_condition:
+    description: The condition state found in a condition assessment.
+    slot_uri: oc:assessedCondition
+    range: DefinedTerm
+    multivalued: true
+    inlined_as_list: true
+    exact_mappings:
+    - crm:E3_Condition_State
+  treatment:
+    description: Treatment carried out in a conservation or restoration event.
+    slot_uri: oc:treatment
+    range: DefinedTerm
+    multivalued: true
+    inlined_as_list: true
+  transferred_from:
+    description: The agent that gave up title or custody.
+    slot_uri: oc:transferredFrom
+    range: Agent
+    inlined: true
+    exact_mappings:
+    - crm:P23_transferred_title_from
+  transferred_to:
+    description: The agent that received title or custody.
+    slot_uri: oc:transferredTo
+    range: Agent
+    inlined: true
+    exact_mappings:
+    - crm:P22_transferred_title_to
+  moved_from:
+    description: The place the object was moved from.
+    slot_uri: oc:movedFrom
+    range: Location
+    inlined: true
+    exact_mappings:
+    - crm:P27_moved_from
+  moved_to:
+    description: The place the object was moved to.
+    slot_uri: oc:movedTo
+    range: Location
+    inlined: true
+    exact_mappings:
+    - crm:P26_moved_to
+  biography:
+    description: >-
+      The events in the life of an object (production, find, conservation, transfer, move, provenance research,
+      and so on). Range is Activity so that both ObjectEvent subclasses and the DCAT-AP+ data-generating
+      events (MeasurementEvent, DigitisationEvent) can be listed in one biography.
+    slot_uri: oc:biography
+    range: Activity
+    multivalued: true
+    inlined_as_list: true
+    close_mappings:
+    - crm:P12_occurred_in_the_presence_of
+  dating:
+    description: >-
+      The dating of an object that has no single production event (for example a monument): absolute period,
+      epoch and whether the absolute dates were derived from the epoch. Use a ProductionEvent where the making is documented.
+    slot_uri: oc:dating
+    range: Dating
+    inlined: true
+  dated_period:
+    description: Earliest and latest date of the dating (ISO 8601-2 / EDTF where the source uses it).
+    slot_uri: dcterms:temporal
+    range: PeriodOfTime
+    inlined: true
+  epoch:
+    description: Relative dating as an epoch, taken from a controlled vocabulary.
+    slot_uri: oc:epoch
+    range: DefinedTerm
+    multivalued: true
+    inlined_as_list: true
+  derived_from_epoch:
+    description: True if the absolute dates were derived automatically from the epoch.
+    slot_uri: oc:derivedFromEpoch
+    range: boolean
+  source_system:
+    description: Name of the system from which the record was exported.
+    slot_uri: oc:sourceSystem
+  no_further_findings_expected:
+    description: True if no further findings are to be expected at the site of the object.
+    slot_uri: oc:noFurtherFindingsExpected
+    range: boolean
+  event_type:
+    description: Refines the kind of event with a term from a controlled vocabulary (for example translocation for a move).
+    slot_uri: dcterms:type
+    range: DefinedTerm
+    inlined: true
+  damage_degree:
+    description: Degree of damage found in a condition assessment.
+    slot_uri: oc:damageDegree
+    range: DefinedTerm
+    inlined: true
+  completeness:
+    description: Completeness of the object found in a condition assessment.
+    slot_uri: oc:completeness
+    range: DefinedTerm
+    inlined: true
+  stability:
+    description: Stability of the object found in a condition assessment.
+    slot_uri: oc:stability
+    range: DefinedTerm
+    inlined: true
+  wkt:
+    description: The geometry as well-known text (point, line or polygon, also multi-geometries).
+    slot_uri: geo:asWKT
+    range: wktLiteral
+    required: true
+  reference_system:
+    description: >-
+      The coordinate reference system of the geometry, as a concept from the EPSG register (for example EPSG:25832).
+      GeoDCAT-AP 3.1.0 defines geodcatap:referenceSystem on datasets, distributions, catalogues and data services; the use on a geometry is an extension.
+    slot_uri: geodcatap:referenceSystem
+    range: Concept
+    inlined: true
+  positional_accuracy:
+    description: How exactly the geometry locates the object (for example "exact", "municipality level"). Free text; use uncertainty for a qualified statement.
+    slot_uri: oc:positionalAccuracy
+  recommendation:
+    description: Handling, presentation, packaging, transport or storage recommendations for the object.
+    slot_uri: oc:recommendation
+    multivalued: true
+  hazard_type:
+    description: The kind of hazard found in a hazard assessment.
+    slot_uri: oc:hazardType
+    range: DefinedTerm
+    multivalued: true
+    inlined_as_list: true
+  protective_measure:
+    description: A protective measure taken against a hazard.
+    slot_uri: oc:protectiveMeasure
+    range: DefinedTerm
+    multivalued: true
+    inlined_as_list: true
+  monitored_condition:
+    description: A condition that is checked in a monitoring event (for example humidity).
+    slot_uri: oc:monitoredCondition
+    range: DefinedTerm
+    multivalued: true
+    inlined_as_list: true
+  finding:
+    description: The conclusion of a provenance research event.
+    slot_uri: oc:finding
+    range: string
+    multivalued: true
+
+classes:
+  ObjectGeometry:
+    description: A geometry resource (locn:Geometry) with WKT, coordinate reference system and positional accuracy.
+    is_a: Geometry
+    class_uri: oc:ObjectGeometry
+    broad_mappings:
+    - locn:Geometry
+    slots:
+    - wkt
+    - reference_system
+    - positional_accuracy
+  Dating:
+    description: Dating of an object without a single production event.
+    class_uri: oc:Dating
+    slots:
+    - dated_period
+    - epoch
+    - derived_from_epoch
+    - note
+    - uncertainty
+  ObjectLocation:
+    description: A dcterms:Location whose geometry is an ObjectGeometry.
+    is_a: Location
+    class_uri: oc:ObjectLocation
+    broad_mappings:
+    - dcterms:Location
+    slot_usage:
+      geometry:
+        range: ObjectGeometry
+        multivalued: true
+        inlined_as_list: true
+      centroid:
+        range: wktLiteral
+      bbox:
+        range: wktLiteral
+  ObjectCoreDataset:
+    description: >-
+      A dcat:Dataset (DCAT-AP 3.0.1) that describes an object, a sample or events of an object biography.
+      Adds the mandatory elements of the NFDI Core Metadata Profile (identifier, title, creator, resource type,
+      licence via the distribution) on top of DCAT-AP.
+    is_a: Dataset
+    class_uri: oc:ObjectCoreDataset
+    broad_mappings:
+    - dcat:Dataset
+    slots:
+    - source_system
+    slot_usage:
+      title:
+        required: true
+        multivalued: true
+        inlined_as_list: true
+      description:
+        required: true
+        multivalued: true
+        inlined_as_list: true
+      identifier:
+        required: true
+        multivalued: true
+        inlined_as_list: true
+      creator:
+        range: Agent
+        required: true
+        multivalued: true
+        inlined_as_list: true
+      release_date:
+        recommended: true
+      source_system:
+        recommended: true
+      type:
+        required: true
+        multivalued: true
+        inlined_as_list: true
+      dataset_distribution:
+        range: ObjectCoreDistribution
+        required: true
+        multivalued: true
+        inlined_as_list: true
+      is_about_entity:
+        range: EvaluatedEntity
+        required: true
+        multivalued: true
+        inlined_as_list: true
+      was_generated_by:
+        range: DataGeneratingActivity
+        required: false
+        recommended: true
+        multivalued: true
+        inlined_as_list: true
+  ObjectCoreDistribution:
+    description: A distribution that always carries a licence (NFDI Core Metadata Profile, MUST).
+    is_a: Distribution
+    class_uri: oc:ObjectCoreDistribution
+    broad_mappings:
+    - dcat:Distribution
+    slot_usage:
+      licence:
+        range: LicenseDocument
+        required: true
+        multivalued: false
+        inlined_as_list: true
+      format:
+        range: MediaTypeOrExtent
+        recommended: true
+        multivalued: false
+        inlined_as_list: true
+  AgentInRole:
+    description: An agent together with the role in which it took part in an event.
+    class_uri: prov:Association
+    slots:
+    - agent
+    - role
+  Uncertainty:
+    description: A qualified statement of uncertainty about one aspect of an event or object description.
+    class_uri: oc:Uncertainty
+    slots:
+    - aspect
+    - level
+    - note
+  PhysicalObject:
+    description: The physical object, specimen or monument that datasets and events are about.
+    is_a: EvaluatedEntity
+    class_uri: crm:E18_Physical_Thing
+    slots:
+    - material
+    - current_location
+    - current_keeper
+    - biography
+    - uncertainty
+    - recommendation
+    - dating
+    - no_further_findings_expected
+    slot_usage:
+      title:
+        required: true
+      material:
+        recommended: true
+  Sample:
+    description: A sample taken from a physical object, for example for an analysis.
+    is_a: PhysicalObject
+    class_uri: crmsci:S13_Sample
+    slots:
+    - sampled_from
+    slot_usage:
+      sampled_from:
+        recommended: true
+  DigitalRepresentation:
+    description: A digital object (image, 3D model, scan) that represents a physical object.
+    is_a: EvaluatedEntity
+    class_uri: crmdig:D1_Digital_Object
+    slots:
+    - represents
+    slot_usage:
+      represents:
+        required: true
+  ObjectEventMixin:
+    description: Slots shared by all events of an object biography.
+    mixin: true
+    slots:
+    - time_span
+    - took_place_at
+    - participation
+    - uncertainty
+    - evidence
+    - event_type
+  ObjectEvent:
+    description: >-
+      An event in the biography of an object. Concrete subclasses fix the kind of event; the optional
+      type slot refines it with a term from a controlled vocabulary.
+    is_a: Activity
+    mixins:
+    - ObjectEventMixin
+    class_uri: crm:E5_Event
+    slot_usage:
+      had_input_entity:
+        range: PhysicalObject
+      time_span:
+        recommended: true
+  ProductionEvent:
+    description: Making or changing an object (CRM E12 Production, E11 Modification).
+    is_a: ObjectEvent
+    class_uri: crm:E12_Production
+  FindEvent:
+    description: Finding or excavating an object (CRMsci S19 Encounter Event, CRMarchaeo A9).
+    is_a: ObjectEvent
+    class_uri: crmsci:S19_Encounter_Event
+    slot_usage:
+      took_place_at:
+        required: true
+  SamplingEvent:
+    description: Taking a sample from an object (CRMsci S2 Sample Taking).
+    is_a: ObjectEvent
+    class_uri: crmsci:S2_Sample_Taking
+    slot_usage:
+      had_output_entity:
+        range: Sample
+  MeasurementEvent:
+    description: Measurement or analysis that produces a dataset (CRMsci S21 Measurement, DCAT-AP+ DataGeneratingActivity).
+    is_a: DataGeneratingActivity
+    mixins:
+    - ObjectEventMixin
+    class_uri: crmsci:S21_Measurement
+  DigitisationEvent:
+    description: Digitising an object (CRMdig D2 Digitization Process, DCAT-AP+ DataGeneratingActivity).
+    is_a: DataGeneratingActivity
+    mixins:
+    - ObjectEventMixin
+    class_uri: crmdig:D2_Digitization_Process
+    slot_usage:
+      had_output_entity:
+        range: DigitalRepresentation
+  ConditionAssessmentEvent:
+    description: Assessing the condition of an object (CRM E14 Condition Assessment).
+    is_a: ObjectEvent
+    class_uri: crm:E14_Condition_Assessment
+    slots:
+    - assessed_condition
+    - damage_degree
+    - completeness
+    - stability
+    slot_usage:
+      assessed_condition:
+        recommended: true
+  ConservationEvent:
+    description: Conservation or restoration treatment (CRM E11 Modification, E87 Curation Activity).
+    is_a: ObjectEvent
+    class_uri: crm:E11_Modification
+    slots:
+    - treatment
+    slot_usage:
+      treatment:
+        recommended: true
+  AcquisitionEvent:
+    description: Change of ownership (CRM E8 Acquisition).
+    is_a: ObjectEvent
+    class_uri: crm:E8_Acquisition
+    slots:
+    - transferred_from
+    - transferred_to
+  CustodyTransferEvent:
+    description: Change of custody without change of ownership (CRM E10 Transfer of Custody).
+    is_a: ObjectEvent
+    class_uri: crm:E10_Transfer_of_Custody
+    slots:
+    - transferred_from
+    - transferred_to
+  MoveEvent:
+    description: Change of physical location (CRM E9 Move).
+    is_a: ObjectEvent
+    class_uri: crm:E9_Move
+    slots:
+    - moved_from
+    - moved_to
+  ProvenanceResearchEvent:
+    description: Research that establishes or revises provenance statements (CRM E13 Attribute Assignment, CRMinf I15).
+    is_a: ObjectEvent
+    class_uri: crminf:I15_Provenance_Assessment
+    slots:
+    - finding
+    slot_usage:
+      evidence:
+        recommended: true
+  PublicationExhibitionEvent:
+    description: Publication or exhibition of an object (CRM E65 Creation, E7 Activity).
+    is_a: ObjectEvent
+    class_uri: crm:E7_Activity
+  HazardAssessmentEvent:
+    description: Assessing hazards to an object and the protective measures taken (KuR-MDS 4.7).
+    is_a: ObjectEvent
+    class_uri: oc:HazardAssessmentEvent
+    broad_mappings:
+    - crm:E7_Activity
+    slots:
+    - hazard_type
+    - protective_measure
+    - finding
+  MonitoringEvent:
+    description: Monitoring of conditions around an object, with measured values (KuR-MDS 4.8). Values go into has_quantitative_attribute.
+    is_a: ObjectEvent
+    class_uri: oc:MonitoringEvent
+    broad_mappings:
+    - crm:E7_Activity
+    slots:
+    - monitored_condition
+    - finding

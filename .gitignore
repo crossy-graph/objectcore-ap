@@ -1,0 +1,5 @@
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+# dist/ and docs/ are versioned products of python main.py

@@ -1,0 +1,74 @@
+{
+  "results": [
+    {
+      "expected": "invalid",
+      "file": "invalid/find-without-place.ttl",
+      "profile": "violations",
+      "triples": 48
+    },
+    {
+      "expected": "invalid",
+      "file": "invalid/no-licence.ttl",
+      "profile": "violations",
+      "triples": 47
+    },
+    {
+      "expected": "invalid",
+      "file": "invalid/no-resource-type.ttl",
+      "profile": "violations",
+      "triples": 50
+    },
+    {
+      "expected": "invalid",
+      "file": "invalid/participant-without-role.ttl",
+      "profile": "violations",
+      "triples": 47
+    },
+    {
+      "expected": "invalid",
+      "file": "invalid/uncertainty-bad-level.ttl",
+      "profile": "violations",
+      "triples": 48
+    },
+    {
+      "dcat_ap_301": "conforms",
+      "dcat_ap_source": "recorded",
+      "expected": "valid",
+      "file": "valid/denkmal-001.ttl",
+      "profile": "conforms",
+      "triples": 80
+    },
+    {
+      "dcat_ap_301": "conforms",
+      "dcat_ap_source": "recorded",
+      "expected": "valid",
+      "file": "valid/find-and-analysis-001.ttl",
+      "profile": "conforms",
+      "triples": 69
+    },
+    {
+      "dcat_ap_301": "conforms",
+      "dcat_ap_source": "recorded",
+      "expected": "valid",
+      "file": "valid/kur-restoration-002.ttl",
+      "profile": "conforms",
+      "triples": 167
+    },
+    {
+      "dcat_ap_301": "conforms",
+      "dcat_ap_source": "recorded",
+      "expected": "valid",
+      "file": "valid/mdse-coin-001.ttl",
+      "profile": "conforms",
+      "triples": 71
+    },
+    {
+      "dcat_ap_301": "conforms",
+      "dcat_ap_source": "recorded",
+      "expected": "valid",
+      "file": "valid/restoration-001.ttl",
+      "profile": "conforms",
+      "triples": 51
+    }
+  ]
+}

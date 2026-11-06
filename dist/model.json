@@ -1,0 +1,1181 @@
+{
+  "classes": [
+    {
+      "class_uri": "crm:E8_Acquisition",
+      "description": "Change of ownership (CRM E8 Acquisition).",
+      "is_a": "ObjectEvent",
+      "mixins": [],
+      "name": "AcquisitionEvent",
+      "slot_usage": [],
+      "slots": [
+        "transferred_from",
+        "transferred_to"
+      ]
+    },
+    {
+      "class_uri": "prov:Association",
+      "description": "An agent together with the role in which it took part in an event.",
+      "is_a": "",
+      "mixins": [],
+      "name": "AgentInRole",
+      "slot_usage": [],
+      "slots": [
+        "agent",
+        "role"
+      ]
+    },
+    {
+      "class_uri": "crm:E14_Condition_Assessment",
+      "description": "Assessing the condition of an object (CRM E14 Condition Assessment).",
+      "is_a": "ObjectEvent",
+      "mixins": [],
+      "name": "ConditionAssessmentEvent",
+      "slot_usage": [
+        "assessed_condition"
+      ],
+      "slots": [
+        "assessed_condition",
+        "damage_degree",
+        "completeness",
+        "stability"
+      ]
+    },
+    {
+      "class_uri": "crm:E11_Modification",
+      "description": "Conservation or restoration treatment (CRM E11 Modification, E87 Curation Activity).",
+      "is_a": "ObjectEvent",
+      "mixins": [],
+      "name": "ConservationEvent",
+      "slot_usage": [
+        "treatment"
+      ],
+      "slots": [
+        "treatment"
+      ]
+    },
+    {
+      "class_uri": "crm:E10_Transfer_of_Custody",
+      "description": "Change of custody without change of ownership (CRM E10 Transfer of Custody).",
+      "is_a": "ObjectEvent",
+      "mixins": [],
+      "name": "CustodyTransferEvent",
+      "slot_usage": [],
+      "slots": [
+        "transferred_from",
+        "transferred_to"
+      ]
+    },
+    {
+      "class_uri": "oc:Dating",
+      "description": "Dating of an object without a single production event.",
+      "is_a": "",
+      "mixins": [],
+      "name": "Dating",
+      "slot_usage": [],
+      "slots": [
+        "dated_period",
+        "epoch",
+        "derived_from_epoch",
+        "note",
+        "uncertainty"
+      ]
+    },
+    {
+      "class_uri": "crmdig:D1_Digital_Object",
+      "description": "A digital object (image, 3D model, scan) that represents a physical object.",
+      "is_a": "EvaluatedEntity",
+      "mixins": [],
+      "name": "DigitalRepresentation",
+      "slot_usage": [
+        "represents"
+      ],
+      "slots": [
+        "represents"
+      ]
+    },
+    {
+      "class_uri": "crmdig:D2_Digitization_Process",
+      "description": "Digitising an object (CRMdig D2 Digitization Process, DCAT-AP+ DataGeneratingActivity).",
+      "is_a": "DataGeneratingActivity",
+      "mixins": [
+        "ObjectEventMixin"
+      ],
+      "name": "DigitisationEvent",
+      "slot_usage": [
+        "had_output_entity"
+      ],
+      "slots": []
+    },
+    {
+      "class_uri": "crmsci:S19_Encounter_Event",
+      "description": "Finding or excavating an object (CRMsci S19 Encounter Event, CRMarchaeo A9).",
+      "is_a": "ObjectEvent",
+      "mixins": [],
+      "name": "FindEvent",
+      "slot_usage": [
+        "took_place_at"
+      ],
+      "slots": []
+    },
+    {
+      "class_uri": "oc:HazardAssessmentEvent",
+      "description": "Assessing hazards to an object and the protective measures taken (KuR-MDS 4.7).",
+      "is_a": "ObjectEvent",
+      "mixins": [],
+      "name": "HazardAssessmentEvent",
+      "slot_usage": [],
+      "slots": [
+        "hazard_type",
+        "protective_measure",
+        "finding"
+      ]
+    },
+    {
+      "class_uri": "crmsci:S21_Measurement",
+      "description": "Measurement or analysis that produces a dataset (CRMsci S21 Measurement, DCAT-AP+ DataGeneratingActivity).",
+      "is_a": "DataGeneratingActivity",
+      "mixins": [
+        "ObjectEventMixin"
+      ],
+      "name": "MeasurementEvent",
+      "slot_usage": [],
+      "slots": []
+    },
+    {
+      "class_uri": "oc:MonitoringEvent",
+      "description": "Monitoring of conditions around an object, with measured values (KuR-MDS 4.8). Values go into has_quantitative_attribute.",
+      "is_a": "ObjectEvent",
+      "mixins": [],
+      "name": "MonitoringEvent",
+      "slot_usage": [],
+      "slots": [
+        "monitored_condition",
+        "finding"
+      ]
+    },
+    {
+      "class_uri": "crm:E9_Move",
+      "description": "Change of physical location (CRM E9 Move).",
+      "is_a": "ObjectEvent",
+      "mixins": [],
+      "name": "MoveEvent",
+      "slot_usage": [],
+      "slots": [
+        "moved_from",
+        "moved_to"
+      ]
+    },
+    {
+      "class_uri": "oc:ObjectCoreDataset",
+      "description": "A dcat:Dataset (DCAT-AP 3.0.1) that describes an object, a sample or events of an object biography. Adds the mandatory elements of the NFDI Core Metadata Profile (identifier, title, creator, resource type, licence via the distribution) on top of DCAT-AP.",
+      "is_a": "Dataset",
+      "mixins": [],
+      "name": "ObjectCoreDataset",
+      "slot_usage": [
+        "creator",
+        "dataset_distribution",
+        "description",
+        "identifier",
+        "is_about_entity",
+        "release_date",
+        "source_system",
+        "title",
+        "type",
+        "was_generated_by"
+      ],
+      "slots": [
+        "source_system"
+      ]
+    },
+    {
+      "class_uri": "oc:ObjectCoreDistribution",
+      "description": "A distribution that always carries a licence (NFDI Core Metadata Profile, MUST).",
+      "is_a": "Distribution",
+      "mixins": [],
+      "name": "ObjectCoreDistribution",
+      "slot_usage": [
+        "format",
+        "licence"
+      ],
+      "slots": []
+    },
+    {
+      "class_uri": "crm:E5_Event",
+      "description": "An event in the biography of an object. Concrete subclasses fix the kind of event; the optional type slot refines it with a term from a controlled vocabulary.",
+      "is_a": "Activity",
+      "mixins": [
+        "ObjectEventMixin"
+      ],
+      "name": "ObjectEvent",
+      "slot_usage": [
+        "had_input_entity",
+        "time_span"
+      ],
+      "slots": []
+    },
+    {
+      "class_uri": "",
+      "description": "Slots shared by all events of an object biography.",
+      "is_a": "",
+      "mixins": [],
+      "name": "ObjectEventMixin",
+      "slot_usage": [],
+      "slots": [
+        "time_span",
+        "took_place_at",
+        "participation",
+        "uncertainty",
+        "evidence",
+        "event_type"
+      ]
+    },
+    {
+      "class_uri": "oc:ObjectGeometry",
+      "description": "A geometry resource (locn:Geometry) with WKT, coordinate reference system and positional accuracy.",
+      "is_a": "Geometry",
+      "mixins": [],
+      "name": "ObjectGeometry",
+      "slot_usage": [],
+      "slots": [
+        "wkt",
+        "reference_system",
+        "positional_accuracy"
+      ]
+    },
+    {
+      "class_uri": "oc:ObjectLocation",
+      "description": "A dcterms:Location whose geometry is an ObjectGeometry.",
+      "is_a": "Location",
+      "mixins": [],
+      "name": "ObjectLocation",
+      "slot_usage": [
+        "bbox",
+        "centroid",
+        "geometry"
+      ],
+      "slots": []
+    },
+    {
+      "class_uri": "crm:E18_Physical_Thing",
+      "description": "The physical object, specimen or monument that datasets and events are about.",
+      "is_a": "EvaluatedEntity",
+      "mixins": [],
+      "name": "PhysicalObject",
+      "slot_usage": [
+        "material",
+        "title"
+      ],
+      "slots": [
+        "material",
+        "current_location",
+        "current_keeper",
+        "biography",
+        "uncertainty",
+        "recommendation",
+        "dating",
+        "no_further_findings_expected"
+      ]
+    },
+    {
+      "class_uri": "crm:E12_Production",
+      "description": "Making or changing an object (CRM E12 Production, E11 Modification).",
+      "is_a": "ObjectEvent",
+      "mixins": [],
+      "name": "ProductionEvent",
+      "slot_usage": [],
+      "slots": []
+    },
+    {
+      "class_uri": "crminf:I15_Provenance_Assessment",
+      "description": "Research that establishes or revises provenance statements (CRM E13 Attribute Assignment, CRMinf I15).",
+      "is_a": "ObjectEvent",
+      "mixins": [],
+      "name": "ProvenanceResearchEvent",
+      "slot_usage": [
+        "evidence"
+      ],
+      "slots": [
+        "finding"
+      ]
+    },
+    {
+      "class_uri": "crm:E7_Activity",
+      "description": "Publication or exhibition of an object (CRM E65 Creation, E7 Activity).",
+      "is_a": "ObjectEvent",
+      "mixins": [],
+      "name": "PublicationExhibitionEvent",
+      "slot_usage": [],
+      "slots": []
+    },
+    {
+      "class_uri": "crmsci:S13_Sample",
+      "description": "A sample taken from a physical object, for example for an analysis.",
+      "is_a": "PhysicalObject",
+      "mixins": [],
+      "name": "Sample",
+      "slot_usage": [
+        "sampled_from"
+      ],
+      "slots": [
+        "sampled_from"
+      ]
+    },
+    {
+      "class_uri": "crmsci:S2_Sample_Taking",
+      "description": "Taking a sample from an object (CRMsci S2 Sample Taking).",
+      "is_a": "ObjectEvent",
+      "mixins": [],
+      "name": "SamplingEvent",
+      "slot_usage": [
+        "had_output_entity"
+      ],
+      "slots": []
+    },
+    {
+      "class_uri": "oc:Uncertainty",
+      "description": "A qualified statement of uncertainty about one aspect of an event or object description.",
+      "is_a": "",
+      "mixins": [],
+      "name": "Uncertainty",
+      "slot_usage": [],
+      "slots": [
+        "aspect",
+        "level",
+        "note"
+      ]
+    }
+  ],
+  "counts": {
+    "classes": 26,
+    "event_classes": 14,
+    "examples_invalid": 5,
+    "examples_valid": 5,
+    "slots": 40,
+    "super_properties": 31
+  },
+  "crosswalk": [
+    {
+      "Art": "übernommen aus DCAT-AP",
+      "DCAT-AP 3.0.1 (Export)": "dct:title",
+      "Kardinalität": "1..*",
+      "Name": "Titel / Bezeichnung",
+      "Name_en": "Title / designation",
+      "ObjectCore-AP-Element": "ObjectCoreDataset.title; PhysicalObject.title; Activity.title",
+      "Super-Property": "SP-01"
+    },
+    {
+      "Art": "übernommen aus DCAT-AP",
+      "DCAT-AP 3.0.1 (Export)": "dct:description",
+      "Kardinalität": "1..*",
+      "Name": "Beschreibung",
+      "Name_en": "Description",
+      "ObjectCore-AP-Element": "ObjectCoreDataset.description; Entity.description; Activity.description",
+      "Super-Property": "SP-02"
+    },
+    {
+      "Art": "verschärft (NFDI-Pflicht)",
+      "DCAT-AP 3.0.1 (Export)": "dct:identifier; adms:identifier",
+      "Kardinalität": "1..*",
+      "Name": "Kennung (Identifier)",
+      "Name_en": "Identifier",
+      "ObjectCore-AP-Element": "ObjectCoreDataset.identifier (required); other_identifier on entities and events; source_system (Quellsystem)",
+      "Super-Property": "SP-03"
+    },
+    {
+      "Art": "übernommen aus DCAT-AP und DCAT-AP+",
+      "DCAT-AP 3.0.1 (Export)": "dct:type; dcat:keyword; dcat:theme",
+      "Kardinalität": "0..*",
+      "Name": "Typ / Kategorie",
+      "Name_en": "Type / category",
+      "ObjectCore-AP-Element": "type (DefinedTerm), rdf_type, keyword, theme",
+      "Super-Property": "SP-04"
+    },
+    {
+      "Art": "übernommen aus DCAT-AP",
+      "DCAT-AP 3.0.1 (Export)": "dct:language",
+      "Kardinalität": "0..*",
+      "Name": "Sprache",
+      "Name_en": "Language",
+      "ObjectCore-AP-Element": "language",
+      "Super-Property": "SP-05"
+    },
+    {
+      "Art": "verschärft (NFDI-Pflicht)",
+      "DCAT-AP 3.0.1 (Export)": "dct:creator",
+      "Kardinalität": "1..*",
+      "Name": "Urheber / Erzeuger",
+      "Name_en": "Creator",
+      "ObjectCore-AP-Element": "ObjectCoreDataset.creator (required)",
+      "Super-Property": "SP-06"
+    },
+    {
+      "Art": "teils Erweiterung",
+      "DCAT-AP 3.0.1 (Export)": "dct:publisher; dcat:contactPoint (current_keeper nur Erweiterung)",
+      "Kardinalität": "0..*",
+      "Name": "Veröffentlichende, verwahrende und kontaktierbare Stelle",
+      "Name_en": "Publisher, keeper, contact",
+      "ObjectCore-AP-Element": "publisher; contact_point; PhysicalObject.current_keeper",
+      "Super-Property": "SP-07"
+    },
+    {
+      "Art": "Erweiterung",
+      "DCAT-AP 3.0.1 (Export)": "prov:qualifiedAssociation; prov:qualifiedAttribution",
+      "Kardinalität": "0..*",
+      "Name": "Beteiligte Agenten mit Rolle",
+      "Name_en": "Agents with role",
+      "ObjectCore-AP-Element": "participation (AgentInRole: agent + role, both required); qualified_attribution",
+      "Super-Property": "SP-08"
+    },
+    {
+      "Art": "übernommen, auf Ereignisse erweitert",
+      "DCAT-AP 3.0.1 (Export)": "dct:temporal (PeriodOfTime)",
+      "Kardinalität": "0..1 / 0..*",
+      "Name": "Zeitliche Abdeckung / Zeitspanne",
+      "Name_en": "Temporal coverage / time span",
+      "ObjectCore-AP-Element": "time_span on events; temporal_coverage on datasets; PhysicalObject.dating (Dating: period, epoch, derived flag)",
+      "Super-Property": "SP-09"
+    },
+    {
+      "Art": "übernommen aus DCAT-AP",
+      "DCAT-AP 3.0.1 (Export)": "dct:issued; dct:modified",
+      "Kardinalität": "0..1",
+      "Name": "Veröffentlichungs- und Änderungsdatum",
+      "Name_en": "Issue and modification date",
+      "ObjectCore-AP-Element": "release_date; modification_date",
+      "Super-Property": "SP-10"
+    },
+    {
+      "Art": "teils Erweiterung",
+      "DCAT-AP 3.0.1 (Export)": "prov:atLocation (Erweiterung); dct:spatial",
+      "Kardinalität": "0..*",
+      "Name": "Raumbezug / Ort",
+      "Name_en": "Spatial reference / place",
+      "ObjectCore-AP-Element": "took_place_at on events (FindEvent required); current_location; geographical_coverage",
+      "Super-Property": "SP-11"
+    },
+    {
+      "Art": "Erweiterung (aus GeoDCAT-AP)",
+      "DCAT-AP 3.0.1 (Export)": "geodcatap:referenceSystem (Erweiterung auf Geometrie); locn:geometry",
+      "Kardinalität": "0..1",
+      "Name": "Räumliches Bezugssystem und Genauigkeit",
+      "Name_en": "Reference system and accuracy",
+      "ObjectCore-AP-Element": "ObjectGeometry.reference_system (EPSG concept); ObjectGeometry.positional_accuracy; ObjectLocation.geometry (locn:Geometry with WKT)",
+      "Super-Property": "SP-12"
+    },
+    {
+      "Art": "Erweiterung",
+      "DCAT-AP 3.0.1 (Export)": "oc:material (kein DCAT-AP-Slot)",
+      "Kardinalität": "0..*",
+      "Name": "Material / Stoff",
+      "Name_en": "Material",
+      "ObjectCore-AP-Element": "PhysicalObject.material (DefinedTerm)",
+      "Super-Property": "SP-13"
+    },
+    {
+      "Art": "importiert aus DCAT-AP+",
+      "DCAT-AP 3.0.1 (Export)": "dct:relation (DCAT-AP+)",
+      "Kardinalität": "0..*",
+      "Name": "Maße, Mengen und Einheiten",
+      "Name_en": "Measures, quantities, units",
+      "ObjectCore-AP-Element": "has_quantitative_attribute (DCAT-AP+)",
+      "Super-Property": "SP-14"
+    },
+    {
+      "Art": "Erweiterung",
+      "DCAT-AP 3.0.1 (Export)": "prov:Activity (crm:E12_Production)",
+      "Kardinalität": "0..*",
+      "Name": "Herstellung / Veränderung des Objekts",
+      "Name_en": "Production / modification",
+      "ObjectCore-AP-Element": "ProductionEvent",
+      "Super-Property": "SP-15"
+    },
+    {
+      "Art": "Erweiterung",
+      "DCAT-AP 3.0.1 (Export)": "prov:Activity (crmsci:S19_Encounter_Event)",
+      "Kardinalität": "0..*",
+      "Name": "Fund / Ausgrabung",
+      "Name_en": "Find / excavation",
+      "ObjectCore-AP-Element": "FindEvent (took_place_at required)",
+      "Super-Property": "SP-16"
+    },
+    {
+      "Art": "importiert aus DCAT-AP+ und erweitert",
+      "DCAT-AP 3.0.1 (Export)": "prov:wasGeneratedBy; prov:Activity",
+      "Kardinalität": "0..*",
+      "Name": "Probenahme, Messung, Analyse",
+      "Name_en": "Sampling, measurement, analysis",
+      "ObjectCore-AP-Element": "SamplingEvent; MeasurementEvent (DataGeneratingActivity)",
+      "Super-Property": "SP-17"
+    },
+    {
+      "Art": "importiert aus DCAT-AP+ und erweitert",
+      "DCAT-AP 3.0.1 (Export)": "dct:subject",
+      "Kardinalität": "1..*",
+      "Name": "Untersuchte Entität (Objekt, Probe)",
+      "Name_en": "Entity under study",
+      "ObjectCore-AP-Element": "is_about_entity (required); PhysicalObject; Sample",
+      "Super-Property": "SP-18"
+    },
+    {
+      "Art": "importiert aus DCAT-AP+",
+      "DCAT-AP 3.0.1 (Export)": "prov:wasAssociatedWith; prov:used (DCAT-AP+)",
+      "Kardinalität": "0..*",
+      "Name": "Instrument, Methode, Plan",
+      "Name_en": "Instrument, method, plan",
+      "ObjectCore-AP-Element": "carried_out_by (Device); realized_plan (Plan)",
+      "Super-Property": "SP-19"
+    },
+    {
+      "Art": "Erweiterung",
+      "DCAT-AP 3.0.1 (Export)": "prov:Activity (crm:E11_Modification; crm:E14_Condition_Assessment)",
+      "Kardinalität": "0..*",
+      "Name": "Konservierung, Restaurierung, Zustand",
+      "Name_en": "Conservation, condition",
+      "ObjectCore-AP-Element": "ConservationEvent (treatment); ConditionAssessmentEvent (assessed_condition); HazardAssessmentEvent; MonitoringEvent; PhysicalObject.recommendation",
+      "Super-Property": "SP-20"
+    },
+    {
+      "Art": "Erweiterung",
+      "DCAT-AP 3.0.1 (Export)": "prov:Activity (crm:E8, E10, E9)",
+      "Kardinalität": "0..*",
+      "Name": "Erwerb, Besitz- und Standortwechsel",
+      "Name_en": "Acquisition, custody, move",
+      "ObjectCore-AP-Element": "AcquisitionEvent; CustodyTransferEvent; MoveEvent",
+      "Super-Property": "SP-21"
+    },
+    {
+      "Art": "Erweiterung",
+      "DCAT-AP 3.0.1 (Export)": "prov:Activity (crminf:I15); dct:source",
+      "Kardinalität": "0..*",
+      "Name": "Provenienzforschung und Beleg",
+      "Name_en": "Provenance research, evidence",
+      "ObjectCore-AP-Element": "ProvenanceResearchEvent (finding, evidence)",
+      "Super-Property": "SP-22"
+    },
+    {
+      "Art": "importiert aus DCAT-AP+ und erweitert",
+      "DCAT-AP 3.0.1 (Export)": "prov:wasGeneratedBy; dct:subject",
+      "Kardinalität": "0..*",
+      "Name": "Digitalisierung / digitale Repräsentation",
+      "Name_en": "Digitisation",
+      "ObjectCore-AP-Element": "DigitisationEvent; DigitalRepresentation.represents",
+      "Super-Property": "SP-23"
+    },
+    {
+      "Art": "Erweiterung",
+      "DCAT-AP 3.0.1 (Export)": "oc:uncertainty (kein DCAT-AP-Slot)",
+      "Kardinalität": "0..*",
+      "Name": "Unsicherheit und Vagheit",
+      "Name_en": "Uncertainty and vagueness",
+      "ObjectCore-AP-Element": "uncertainty (Uncertainty: aspect, level, note)",
+      "Super-Property": "SP-24"
+    },
+    {
+      "Art": "verschärft (NFDI-Pflicht)",
+      "DCAT-AP 3.0.1 (Export)": "dct:license; dct:rights; dct:accessRights",
+      "Kardinalität": "1 / 0..1",
+      "Name": "Rechte, Lizenz, Zugang",
+      "Name_en": "Rights, licence, access",
+      "ObjectCore-AP-Element": "ObjectCoreDistribution.licence (required); rights; access_rights",
+      "Super-Property": "SP-25"
+    },
+    {
+      "Art": "verschärft",
+      "DCAT-AP 3.0.1 (Export)": "dcat:distribution",
+      "Kardinalität": "1..*",
+      "Name": "Distribution, Format, Zugriff",
+      "Name_en": "Distribution, format, access",
+      "ObjectCore-AP-Element": "dataset_distribution (ObjectCoreDistribution: access_URL required)",
+      "Super-Property": "SP-26"
+    },
+    {
+      "Art": "übernommen aus DCAT-AP",
+      "DCAT-AP 3.0.1 (Export)": "dct:relation; dct:source; dct:hasPart",
+      "Kardinalität": "0..*",
+      "Name": "Beziehungen zwischen Ressourcen",
+      "Name_en": "Relations between resources",
+      "ObjectCore-AP-Element": "relation; source; has_part; part_of; evidence",
+      "Super-Property": "SP-27"
+    },
+    {
+      "Art": "übernommen aus DCAT-AP",
+      "DCAT-AP 3.0.1 (Export)": "dcat:version; dcat:hasVersion; dcat:inSeries",
+      "Kardinalität": "0..*",
+      "Name": "Version und Serie",
+      "Name_en": "Version and series",
+      "ObjectCore-AP-Element": "version; has_version; in_series",
+      "Super-Property": "SP-28"
+    },
+    {
+      "Art": "übernommen aus DCAT-AP",
+      "DCAT-AP 3.0.1 (Export)": "dct:conformsTo",
+      "Kardinalität": "0..*",
+      "Name": "Konformität und Qualität",
+      "Name_en": "Conformance and quality",
+      "ObjectCore-AP-Element": "conforms_to",
+      "Super-Property": "SP-29"
+    },
+    {
+      "Art": "offen",
+      "DCAT-AP 3.0.1 (Export)": "dcat:DataService",
+      "Kardinalität": "",
+      "Name": "Software, Dienst, Lehrmaterial",
+      "Name_en": "Software, service, teaching",
+      "ObjectCore-AP-Element": "noch nicht im Profil; Muster EPOS-DCAT-AP, DataService",
+      "Super-Property": "SP-30"
+    },
+    {
+      "Art": "übernommen aus DCAT-AP",
+      "DCAT-AP 3.0.1 (Export)": "dcat:CatalogRecord",
+      "Kardinalität": "0..*",
+      "Name": "Katalogeintrag (Metadatensatz)",
+      "Name_en": "Catalogue record",
+      "ObjectCore-AP-Element": "record (CatalogueRecord)",
+      "Super-Property": "SP-31"
+    }
+  ],
+  "event_classes": [
+    "AcquisitionEvent",
+    "ConditionAssessmentEvent",
+    "ConservationEvent",
+    "CustodyTransferEvent",
+    "DigitisationEvent",
+    "FindEvent",
+    "HazardAssessmentEvent",
+    "MeasurementEvent",
+    "MonitoringEvent",
+    "MoveEvent",
+    "ProductionEvent",
+    "ProvenanceResearchEvent",
+    "PublicationExhibitionEvent",
+    "SamplingEvent"
+  ],
+  "examples": [
+    {
+      "dataset": "Barrow near Example Village",
+      "events": [
+        {
+          "description": "The barrow was moved to the museum park in 1978.",
+          "event_type": "translocation",
+          "id": "event-translocation-001",
+          "types": [
+            "crm:E9_Move"
+          ]
+        }
+      ],
+      "file": "denkmal-001.ttl",
+      "has_dating": true,
+      "has_geometry": true,
+      "has_uncertainty": true,
+      "object": "Barrow 1",
+      "object_types": [
+        "crm:E18_Physical_Thing"
+      ],
+      "slots_used": [
+        "oc:aspect",
+        "oc:biography",
+        "oc:currentLocation",
+        "oc:dating",
+        "oc:derivedFromEpoch",
+        "oc:epoch",
+        "oc:level",
+        "oc:noFurtherFindingsExpected",
+        "oc:positionalAccuracy",
+        "oc:sourceSystem",
+        "oc:uncertainty"
+      ],
+      "triples": 80
+    },
+    {
+      "dataset": "Lead isotope analysis of a sample from a bronze fibula",
+      "events": [
+        {
+          "description": "Find during the 2025 excavation.",
+          "event_type": "",
+          "id": "event-find-001",
+          "types": [
+            "crmsci:S19_Encounter_Event"
+          ]
+        }
+      ],
+      "file": "find-and-analysis-001.ttl",
+      "has_dating": false,
+      "has_geometry": false,
+      "has_uncertainty": true,
+      "object": "Sample S-1",
+      "object_types": [
+        "crmsci:S13_Sample"
+      ],
+      "slots_used": [
+        "oc:aspect",
+        "oc:biography",
+        "oc:level",
+        "oc:material",
+        "oc:sampledFrom",
+        "oc:uncertainty"
+      ],
+      "triples": 69
+    },
+    {
+      "dataset": "Restoration record: iron sword",
+      "events": [
+        {
+          "description": "Entry into the collection (Eingangsdatum, Herkunft).",
+          "event_type": "",
+          "id": "event-acquisition-002",
+          "types": [
+            "crm:E8_Acquisition"
+          ]
+        },
+        {
+          "description": "Condition assessment before treatment: active corrosion, 70 % complete.",
+          "event_type": "",
+          "id": "event-assessment-002",
+          "types": [
+            "crm:E14_Condition_Assessment"
+          ]
+        },
+        {
+          "description": "X-radiography of the blade.",
+          "event_type": "",
+          "id": "event-exam-002",
+          "types": [
+            "crmsci:S21_Measurement"
+          ]
+        },
+        {
+          "description": "Hazard assessment for the planned exhibition.",
+          "event_type": "",
+          "id": "event-hazard-002",
+          "types": [
+            "oc:HazardAssessmentEvent"
+          ]
+        },
+        {
+          "description": "Humidity monitoring in the display case.",
+          "event_type": "",
+          "id": "event-monitoring-002",
+          "types": [
+            "oc:MonitoringEvent"
+          ]
+        },
+        {
+          "description": "Corrosion sample taken near the hilt.",
+          "event_type": "",
+          "id": "event-sampling-002",
+          "types": [
+            "crmsci:S2_Sample_Taking"
+          ]
+        },
+        {
+          "description": "Mechanical cleaning and consolidation.",
+          "event_type": "",
+          "id": "event-treatment-002",
+          "types": [
+            "crm:E11_Modification"
+          ]
+        }
+      ],
+      "file": "kur-restoration-002.ttl",
+      "has_dating": false,
+      "has_geometry": false,
+      "has_uncertainty": false,
+      "object": "Iron sword",
+      "object_types": [
+        "crm:E18_Physical_Thing"
+      ],
+      "slots_used": [
+        "oc:assessedCondition",
+        "oc:biography",
+        "oc:completeness",
+        "oc:currentKeeper",
+        "oc:damageDegree",
+        "oc:finding",
+        "oc:hazardType",
+        "oc:material",
+        "oc:monitoredCondition",
+        "oc:protectiveMeasure",
+        "oc:recommendation",
+        "oc:stability",
+        "oc:transferredFrom",
+        "oc:treatment"
+      ],
+      "triples": 167
+    },
+    {
+      "dataset": "Faustina (Minor), Aureus",
+      "events": [
+        {
+          "description": "Praegung, Rom.",
+          "event_type": "",
+          "id": "event-production-001",
+          "types": [
+            "crm:E12_Production"
+          ]
+        }
+      ],
+      "file": "mdse-coin-001.ttl",
+      "has_dating": false,
+      "has_geometry": false,
+      "has_uncertainty": true,
+      "object": "Faustina (Minor)",
+      "object_types": [
+        "crm:E18_Physical_Thing"
+      ],
+      "slots_used": [
+        "oc:aspect",
+        "oc:biography",
+        "oc:currentKeeper",
+        "oc:level",
+        "oc:material",
+        "oc:uncertainty"
+      ],
+      "triples": 71
+    },
+    {
+      "dataset": "Restoration documentation of a bronze fibula",
+      "events": [
+        {
+          "description": "Condition assessment before treatment.",
+          "event_type": "",
+          "id": "event-assessment-001",
+          "types": [
+            "crm:E14_Condition_Assessment"
+          ]
+        }
+      ],
+      "file": "restoration-001.ttl",
+      "has_dating": false,
+      "has_geometry": false,
+      "has_uncertainty": true,
+      "object": "Bronze fibula 17",
+      "object_types": [
+        "crm:E18_Physical_Thing"
+      ],
+      "slots_used": [
+        "oc:aspect",
+        "oc:assessedCondition",
+        "oc:biography",
+        "oc:level",
+        "oc:material",
+        "oc:uncertainty"
+      ],
+      "triples": 51
+    }
+  ],
+  "release": "0.1.0",
+  "slots": [
+    {
+      "description": "The agent in a participation.",
+      "name": "agent",
+      "range": "Agent",
+      "slot_uri": "prov:agent"
+    },
+    {
+      "description": "Which aspect of the description is uncertain.",
+      "name": "aspect",
+      "range": "UncertaintyAspectEnum",
+      "slot_uri": ""
+    },
+    {
+      "description": "The condition state found in a condition assessment.",
+      "name": "assessed_condition",
+      "range": "DefinedTerm",
+      "slot_uri": "oc:assessedCondition"
+    },
+    {
+      "description": "The events in the life of an object (production, find, conservation, transfer, move, provenance research, and so on). Range is Activity so that both ObjectEvent subclasses and the DCAT-AP+ data-generating events (MeasurementEvent, DigitisationEvent) can be listed in one biography.",
+      "name": "biography",
+      "range": "Activity",
+      "slot_uri": "oc:biography"
+    },
+    {
+      "description": "Completeness of the object found in a condition assessment.",
+      "name": "completeness",
+      "range": "DefinedTerm",
+      "slot_uri": "oc:completeness"
+    },
+    {
+      "description": "The agent that currently has custody of the object.",
+      "name": "current_keeper",
+      "range": "Agent",
+      "slot_uri": "oc:currentKeeper"
+    },
+    {
+      "description": "Where the object is now.",
+      "name": "current_location",
+      "range": "ObjectLocation",
+      "slot_uri": "oc:currentLocation"
+    },
+    {
+      "description": "Degree of damage found in a condition assessment.",
+      "name": "damage_degree",
+      "range": "DefinedTerm",
+      "slot_uri": "oc:damageDegree"
+    },
+    {
+      "description": "Earliest and latest date of the dating (ISO 8601-2 / EDTF where the source uses it).",
+      "name": "dated_period",
+      "range": "PeriodOfTime",
+      "slot_uri": "dcterms:temporal"
+    },
+    {
+      "description": "The dating of an object that has no single production event (for example a monument): absolute period, epoch and whether the absolute dates were derived from the epoch. Use a ProductionEvent where the making is documented.",
+      "name": "dating",
+      "range": "Dating",
+      "slot_uri": "oc:dating"
+    },
+    {
+      "description": "True if the absolute dates were derived automatically from the epoch.",
+      "name": "derived_from_epoch",
+      "range": "boolean",
+      "slot_uri": "oc:derivedFromEpoch"
+    },
+    {
+      "description": "Relative dating as an epoch, taken from a controlled vocabulary.",
+      "name": "epoch",
+      "range": "DefinedTerm",
+      "slot_uri": "oc:epoch"
+    },
+    {
+      "description": "Refines the kind of event with a term from a controlled vocabulary (for example translocation for a move).",
+      "name": "event_type",
+      "range": "DefinedTerm",
+      "slot_uri": "dcterms:type"
+    },
+    {
+      "description": "The source or document on which an event statement is based.",
+      "name": "evidence",
+      "range": "Entity",
+      "slot_uri": "dcterms:source"
+    },
+    {
+      "description": "The conclusion of a provenance research event.",
+      "name": "finding",
+      "range": "string",
+      "slot_uri": "oc:finding"
+    },
+    {
+      "description": "The kind of hazard found in a hazard assessment.",
+      "name": "hazard_type",
+      "range": "DefinedTerm",
+      "slot_uri": "oc:hazardType"
+    },
+    {
+      "description": "Degree of certainty.",
+      "name": "level",
+      "range": "UncertaintyLevelEnum",
+      "slot_uri": ""
+    },
+    {
+      "description": "Material of a physical object or sample, taken from a controlled vocabulary.",
+      "name": "material",
+      "range": "DefinedTerm",
+      "slot_uri": "oc:material"
+    },
+    {
+      "description": "A condition that is checked in a monitoring event (for example humidity).",
+      "name": "monitored_condition",
+      "range": "DefinedTerm",
+      "slot_uri": "oc:monitoredCondition"
+    },
+    {
+      "description": "The place the object was moved from.",
+      "name": "moved_from",
+      "range": "Location",
+      "slot_uri": "oc:movedFrom"
+    },
+    {
+      "description": "The place the object was moved to.",
+      "name": "moved_to",
+      "range": "Location",
+      "slot_uri": "oc:movedTo"
+    },
+    {
+      "description": "True if no further findings are to be expected at the site of the object.",
+      "name": "no_further_findings_expected",
+      "range": "boolean",
+      "slot_uri": "oc:noFurtherFindingsExpected"
+    },
+    {
+      "description": "Free-text explanation of the uncertainty.",
+      "name": "note",
+      "range": "",
+      "slot_uri": "skos:note"
+    },
+    {
+      "description": "An agent taking part in an event, with the role in which it acted.",
+      "name": "participation",
+      "range": "AgentInRole",
+      "slot_uri": "prov:qualifiedAssociation"
+    },
+    {
+      "description": "How exactly the geometry locates the object (for example \"exact\", \"municipality level\"). Free text; use uncertainty for a qualified statement.",
+      "name": "positional_accuracy",
+      "range": "",
+      "slot_uri": "oc:positionalAccuracy"
+    },
+    {
+      "description": "A protective measure taken against a hazard.",
+      "name": "protective_measure",
+      "range": "DefinedTerm",
+      "slot_uri": "oc:protectiveMeasure"
+    },
+    {
+      "description": "Handling, presentation, packaging, transport or storage recommendations for the object.",
+      "name": "recommendation",
+      "range": "",
+      "slot_uri": "oc:recommendation"
+    },
+    {
+      "description": "The coordinate reference system of the geometry, as a concept from the EPSG register (for example EPSG:25832). GeoDCAT-AP 3.1.0 defines geodcatap:referenceSystem on datasets, distributions, catalogues and data services; the use on a geometry is an extension.",
+      "name": "reference_system",
+      "range": "Concept",
+      "slot_uri": "geodcatap:referenceSystem"
+    },
+    {
+      "description": "The physical object that a digital representation stands for.",
+      "name": "represents",
+      "range": "PhysicalObject",
+      "slot_uri": "dcterms:subject"
+    },
+    {
+      "description": "The role in which the agent acted, taken from a controlled vocabulary.",
+      "name": "role",
+      "range": "DefinedTerm",
+      "slot_uri": "dcat:hadRole"
+    },
+    {
+      "description": "The object from which a sample was taken.",
+      "name": "sampled_from",
+      "range": "PhysicalObject",
+      "slot_uri": "oc:sampledFrom"
+    },
+    {
+      "description": "Name of the system from which the record was exported.",
+      "name": "source_system",
+      "range": "",
+      "slot_uri": "oc:sourceSystem"
+    },
+    {
+      "description": "Stability of the object found in a condition assessment.",
+      "name": "stability",
+      "range": "DefinedTerm",
+      "slot_uri": "oc:stability"
+    },
+    {
+      "description": "The period during which an event took place (CRM P4 has time-span).",
+      "name": "time_span",
+      "range": "PeriodOfTime",
+      "slot_uri": "dcterms:temporal"
+    },
+    {
+      "description": "The place where an event happened (CRM P7 took place at). Not the spatial coverage of a dataset.",
+      "name": "took_place_at",
+      "range": "ObjectLocation",
+      "slot_uri": "prov:atLocation"
+    },
+    {
+      "description": "The agent that gave up title or custody.",
+      "name": "transferred_from",
+      "range": "Agent",
+      "slot_uri": "oc:transferredFrom"
+    },
+    {
+      "description": "The agent that received title or custody.",
+      "name": "transferred_to",
+      "range": "Agent",
+      "slot_uri": "oc:transferredTo"
+    },
+    {
+      "description": "Treatment carried out in a conservation or restoration event.",
+      "name": "treatment",
+      "range": "DefinedTerm",
+      "slot_uri": "oc:treatment"
+    },
+    {
+      "description": "A statement about how certain or vague an aspect of the event or object description is.",
+      "name": "uncertainty",
+      "range": "Uncertainty",
+      "slot_uri": "oc:uncertainty"
+    },
+    {
+      "description": "The geometry as well-known text (point, line or polygon, also multi-geometries).",
+      "name": "wkt",
+      "range": "wktLiteral",
+      "slot_uri": "geo:asWKT"
+    }
+  ],
+  "tests": [
+    {
+      "expected": "invalid",
+      "file": "invalid/find-without-place.ttl",
+      "profile": "violations",
+      "triples": 48
+    },
+    {
+      "expected": "invalid",
+      "file": "invalid/no-licence.ttl",
+      "profile": "violations",
+      "triples": 47
+    },
+    {
+      "expected": "invalid",
+      "file": "invalid/no-resource-type.ttl",
+      "profile": "violations",
+      "triples": 50
+    },
+    {
+      "expected": "invalid",
+      "file": "invalid/participant-without-role.ttl",
+      "profile": "violations",
+      "triples": 47
+    },
+    {
+      "expected": "invalid",
+      "file": "invalid/uncertainty-bad-level.ttl",
+      "profile": "violations",
+      "triples": 48
+    },
+    {
+      "dcat_ap_301": "conforms",
+      "dcat_ap_source": "recorded",
+      "expected": "valid",
+      "file": "valid/denkmal-001.ttl",
+      "profile": "conforms",
+      "triples": 80
+    },
+    {
+      "dcat_ap_301": "conforms",
+      "dcat_ap_source": "recorded",
+      "expected": "valid",
+      "file": "valid/find-and-analysis-001.ttl",
+      "profile": "conforms",
+      "triples": 69
+    },
+    {
+      "dcat_ap_301": "conforms",
+      "dcat_ap_source": "recorded",
+      "expected": "valid",
+      "file": "valid/kur-restoration-002.ttl",
+      "profile": "conforms",
+      "triples": 167
+    },
+    {
+      "dcat_ap_301": "conforms",
+      "dcat_ap_source": "recorded",
+      "expected": "valid",
+      "file": "valid/mdse-coin-001.ttl",
+      "profile": "conforms",
+      "triples": 71
+    },
+    {
+      "dcat_ap_301": "conforms",
+      "dcat_ap_source": "recorded",
+      "expected": "valid",
+      "file": "valid/restoration-001.ttl",
+      "profile": "conforms",
+      "triples": 51
+    }
+  ]
+}

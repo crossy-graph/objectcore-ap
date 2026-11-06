@@ -1,0 +1,41 @@
+id: https://example.org/dataset/analysis-001
+title:
+- Lead isotope analysis of a sample from a bronze fibula
+description:
+- Measurement data from a sample taken from a Roman fibula found in a documented excavation.
+type:
+- preferred_label:
+  - Dataset
+identifier:
+- analysis-001
+creator:
+- name:
+  - Example Archaeometry Lab
+release_date: "2026-05-02"
+dataset_distribution:
+- title:
+  - Measurement table
+  access_URL:
+  - id: https://example.org/files/analysis-001.csv
+  licence:
+    id: http://creativecommons.org/publicdomain/zero/1.0/
+was_generated_by:
+- id: https://example.org/event/measurement-001
+  description:
+  - Lead isotope measurement.
+  time_span:
+    start_date: "2026-04-20"
+  participation:
+  - agent:
+      name:
+      - Example Archaeometry Lab
+    role:
+      id: https://example.org/vocab/analyst
+      title: analyst
+is_about_entity:
+- id: https://example.org/sample/s-1
+  title: Sample S-1
+  material:
+  - id: https://example.org/vocab/bronze
+    title: bronze
+  sampled_from: https://example.org/object/fibula-17

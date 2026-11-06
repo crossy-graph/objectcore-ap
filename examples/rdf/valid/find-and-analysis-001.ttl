@@ -1,0 +1,58 @@
+@prefix dcat: <http://www.w3.org/ns/dcat#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/> .
+@prefix prov: <http://www.w3.org/ns/prov#> .
+@prefix crm: <http://www.cidoc-crm.org/cidoc-crm/> .
+@prefix crmsci: <http://www.cidoc-crm.org/extensions/crmsci/> .
+@prefix oc: <https://w3id.org/nfdi4objects/objectcore-ap/> .
+@prefix schema: <http://schema.org/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix ex: <https://example.org/> .
+
+ex:dataset-analysis-001 a dcat:Dataset, oc:ObjectCoreDataset ;
+  dcterms:type ex:type-dataset ;
+  dcterms:title "Lead isotope analysis of a sample from a bronze fibula" ;
+  dcterms:description "Measurement data from a sample taken from a Roman fibula." ;
+  dcterms:identifier "analysis-001" ;
+  dcterms:creator [ a foaf:Agent ; foaf:name "Example Archaeometry Lab" ] ;
+  dcterms:issued "2026-05-02"^^xsd:date ;
+  dcat:distribution ex:dist-2 ;
+  dcterms:subject ex:sample-s1 ;
+  prov:wasGeneratedBy ex:event-measurement-001 .
+
+ex:dist-2 a dcat:Distribution, oc:ObjectCoreDistribution ;
+  dcterms:title "Measurement table" ;
+  dcat:accessURL <https://example.org/files/analysis-001.csv> ;
+  dcterms:license <http://creativecommons.org/publicdomain/zero/1.0/> .
+<http://creativecommons.org/publicdomain/zero/1.0/> a dcterms:LicenseDocument .
+
+ex:object-fibula-17 a crm:E18_Physical_Thing, prov:Entity ;
+  dcterms:title "Bronze fibula 17" ;
+  oc:biography ex:event-find-001 .
+
+ex:event-find-001 a prov:Activity, crmsci:S19_Encounter_Event ;
+  dcterms:description "Find during the 2025 excavation." ;
+  dcterms:temporal [ a dcterms:PeriodOfTime ; dcat:startDate "2025-08-12"^^xsd:date ] ;
+  prov:atLocation [ a dcterms:Location, oc:ObjectLocation ; dcat:centroid "POINT(8.2473 49.9929)"^^<http://www.opengis.net/ont/geosparql#wktLiteral> ] ;
+  prov:qualifiedAssociation [ a prov:Association ;
+      prov:agent [ a foaf:Agent ; foaf:name "Example Excavation Team" ] ;
+      dcat:hadRole ex:vocab-excavator ] ;
+  oc:uncertainty [ a oc:Uncertainty ; oc:aspect "place" ; oc:level "possible" ; <http://www.w3.org/2004/02/skos/core#note> "Findspot recorded from the find tag, not from a surveyed point." ] .
+
+ex:sample-s1 a crmsci:S13_Sample, prov:Entity ;
+  dcterms:title "Sample S-1" ;
+  oc:material ex:vocab-bronze ;
+  oc:sampledFrom ex:object-fibula-17 .
+
+ex:event-measurement-001 a prov:Activity, crmsci:S21_Measurement ;
+  dcterms:description "Lead isotope measurement." ;
+  dcterms:temporal [ a dcterms:PeriodOfTime ; dcat:startDate "2026-04-20"^^xsd:date ] ;
+  prov:qualifiedAssociation [ a prov:Association ;
+      prov:agent [ a foaf:Agent ; foaf:name "Example Archaeometry Lab" ] ;
+      dcat:hadRole ex:vocab-analyst ] .
+
+ex:vocab-excavator a schema:DefinedTerm ; schema:name "excavator" .
+ex:vocab-analyst a schema:DefinedTerm ; schema:name "analyst" .
+ex:vocab-bronze a schema:DefinedTerm ; schema:name "bronze" .
+
+ex:type-dataset a <http://www.w3.org/2004/02/skos/core#Concept> ; <http://www.w3.org/2004/02/skos/core#prefLabel> "Dataset"@en .

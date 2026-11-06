@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using the metadata below."
+title: "ObjectCore-AP: application profile for the Object Core Metadata Profile of NFDI4Objects"
+abstract: >-
+  LinkML application profile that extends DCAT-AP 3.0.1 (via DCAT-AP+) for objects, samples and events in an object
+  biography, with SHACL shapes, examples and generated documentation.
+type: software
+authors:
+  - family-names: Thiery
+    given-names: Florian
+    orcid: "https://orcid.org/0000-0000-0000-0000"  # TODO: insert ORCID
+license: MIT
+version: "0.1.0"
+date-released: "2026-11-06"
+repository-code: "https://github.com/crossy-graph/objectcore-ap"
+keywords:
+  - DCAT-AP
+  - LinkML
+  - SHACL
+  - CIDOC CRM
+  - NFDI4Objects

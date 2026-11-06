@@ -1,0 +1,9 @@
+# LinkML generators (gen-json-schema, gen-shacl, gen-owl). Loose pin: the SHACL post-processing in tools/postprocess_shacl.py
+# was written against linkml 1.8 and 1.9 output.
+linkml>=1.8
+pyshacl>=0.26
+rdflib>=7
+pyyaml>=6
+# figures: text metrics (Pillow) and SVG -> PNG (resvg-py); both are needed for byte-stable output across machines
+pillow>=10
+resvg-py>=0.1
