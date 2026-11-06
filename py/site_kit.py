@@ -12,6 +12,11 @@ def vis_nav(m):
     items = [("Overview", "/visuals/index.html", "visuals/index.html"), ("Pipeline", "/visuals/pipeline.html", "visuals/pipeline.html"),
              ("Profile model", "/visuals/model.html", "visuals/model.html"), ("Crosswalk", "/visuals/crosswalk.html", "visuals/crosswalk.html"),
              ("Tests", "/visuals/tests.html", "visuals/tests.html")]
+    return items
+
+
+def ex_nav(m):
+    items = []
     for ex in m["examples"]:
         n = "example-" + ex["file"].replace(".ttl", "")
         items.append((ex["file"].replace(".ttl", ""), "/visuals/%s.html" % n, "visuals/%s.html" % n))
@@ -28,11 +33,16 @@ main{max-width:1040px;margin:0 auto;padding:16px 16px 48px}
 h1{font-size:28px;font-weight:500;margin:24px 0 8px}
 h2{font-size:22px;font-weight:500;margin:28px 0 8px}
 a{color:var(--accent)}
-nav{max-width:1040px;margin:0 auto;padding:16px 16px 0}
-nav .row{display:flex;flex-wrap:wrap;gap:4px 16px;align-items:baseline;margin-bottom:4px;font-size:15px}
-nav .lab{font-size:12px;font-variant:small-caps;letter-spacing:.06em;color:var(--muted);min-width:96px}
+nav{max-width:1008px;margin:16px auto 0;background:var(--card);border:1px solid var(--rim);border-radius:10px;overflow:hidden}
+nav .row{display:flex;flex-wrap:wrap;gap:4px 18px;align-items:center;padding:10px 16px 10px 20px;border-left:5px solid var(--accent);font-size:15px}
+nav .row+.row{border-top:1px solid var(--rim)}
+nav .row.doc{border-left-color:var(--ink)}
+nav .lab{font-size:11.5px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:#fff;background:var(--accent);border-radius:5px;padding:3px 10px;flex:0 0 auto}
+nav .row.doc .lab{background:var(--ink)}
 nav a{text-decoration:none;color:var(--muted)}
+nav a:hover{color:var(--ink)}
 nav a.active{color:var(--accent);font-weight:500}
+@media(max-width:1040px){nav{margin-left:16px;margin-right:16px}}
 section,article.prose{background:var(--card);border:1px solid var(--rim);border-radius:10px;padding:16px;margin-bottom:24px}
 section img{max-width:100%;height:auto;display:block}
 .row2{display:flex;gap:12px;align-items:baseline;margin-top:10px}
@@ -51,21 +61,21 @@ code{font-size:.92em;background:#f1f0ea;padding:0 4px;border-radius:4px}
 
 
 def nav_liquid(m):
-    def row(label, items):
+    def row(label, items, cls=""):
         links = "".join('<a href="{{ \'%s\' | relative_url }}"{%% if page.url == \'%s\' %%} class="active"{%% endif %%}>%s</a>' % (u, u, l) for l, u, _ in items)
-        return '<div class="row"><span class="lab">%s</span>%s</div>' % (label, links)
-    return "<nav>" + row("Documentation", DOC_NAV) + row("Visuals", vis_nav(m)) + "</nav>"
+        return '<div class="row%s"><span class="lab">%s</span>%s</div>' % (cls, label, links)
+    return "<nav>" + row("Documentation", DOC_NAV, " doc") + row("Visuals", vis_nav(m)) + row("Examples", ex_nav(m)) + "</nav>"
 
 
 def nav_static(m, active):
-    def row(label, items):
+    def row(label, items, cls=""):
         links = ""
         for l, _, f in items:
             href = ("../" + f) if True else f
-            cls = ' class="active"' if f == active else ""
-            links += '<a href="%s"%s>%s</a>' % (href, cls, l)
-        return '<div class="row"><span class="lab">%s</span>%s</div>' % (label, links)
-    return "<nav>" + row("Documentation", DOC_NAV) + row("Visuals", vis_nav(m)) + "</nav>"
+            acls = ' class="active"' if f == active else ""
+            links += '<a href="%s"%s>%s</a>' % (href, acls, l)
+        return '<div class="row%s"><span class="lab">%s</span>%s</div>' % (cls, label, links)
+    return "<nav>" + row("Documentation", DOC_NAV, " doc") + row("Visuals", vis_nav(m)) + row("Examples", ex_nav(m)) + "</nav>"
 
 
 def write_assets(m):

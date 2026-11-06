@@ -7,11 +7,16 @@ main{max-width:1040px;margin:0 auto;padding:16px 16px 48px}
 h1{font-size:28px;font-weight:500;margin:24px 0 8px}
 h2{font-size:22px;font-weight:500;margin:28px 0 8px}
 a{color:var(--accent)}
-nav{max-width:1040px;margin:0 auto;padding:16px 16px 0}
-nav .row{display:flex;flex-wrap:wrap;gap:4px 16px;align-items:baseline;margin-bottom:4px;font-size:15px}
-nav .lab{font-size:12px;font-variant:small-caps;letter-spacing:.06em;color:var(--muted);min-width:96px}
+nav{max-width:1008px;margin:16px auto 0;background:var(--card);border:1px solid var(--rim);border-radius:10px;overflow:hidden}
+nav .row{display:flex;flex-wrap:wrap;gap:4px 18px;align-items:center;padding:10px 16px 10px 20px;border-left:5px solid var(--accent);font-size:15px}
+nav .row+.row{border-top:1px solid var(--rim)}
+nav .row.doc{border-left-color:var(--ink)}
+nav .lab{font-size:11.5px;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:#fff;background:var(--accent);border-radius:5px;padding:3px 10px;flex:0 0 auto}
+nav .row.doc .lab{background:var(--ink)}
 nav a{text-decoration:none;color:var(--muted)}
+nav a:hover{color:var(--ink)}
 nav a.active{color:var(--accent);font-weight:500}
+@media(max-width:1040px){nav{margin-left:16px;margin-right:16px}}
 section,article.prose{background:var(--card);border:1px solid var(--rim);border-radius:10px;padding:16px;margin-bottom:24px}
 section img{max-width:100%;height:auto;display:block}
 .row2{display:flex;gap:12px;align-items:baseline;margin-top:10px}
